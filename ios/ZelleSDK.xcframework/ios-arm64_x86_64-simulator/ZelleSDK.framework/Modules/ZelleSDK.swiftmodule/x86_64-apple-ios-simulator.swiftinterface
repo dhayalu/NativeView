@@ -1,0 +1,94 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)
+// swift-module-flags: -target x86_64-apple-ios13.1-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name ZelleSDK
+import AVFoundation
+import Contacts
+import ContactsUI
+import CoreLocation
+import CoreTelephony
+import Foundation
+import JavaScriptCore
+import Photos
+import PhotosUI
+import QRCodeReader
+import Swift
+import UIKit
+import WebKit
+@_exported import ZelleSDK
+import _Concurrency
+public struct ResultObject : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+@objc public class Bridge : ObjectiveC.NSObject {
+  @objc weak public static var genericTag: ZelleSDK.GenericTagDelegate?
+  @objc public init(config: ZelleSDK.BridgeConfig, viewController: UIKit.UIViewController)
+  @objc public func view(frame: CoreGraphics.CGRect) -> ZelleSDK.BridgeView
+  @objc public func popup(anchor: UIKit.UIView) -> ZelleSDK.BridgePopup
+  @objc deinit
+}
+public struct Contact1 : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers @objc @_Concurrency.MainActor(unsafe) public class BridgeView : UIKit.UIView, WebKit.WKUIDelegate, WebKit.WKNavigationDelegate {
+  @_Concurrency.MainActor(unsafe) public var webView: WebKit.WKWebView?
+  @_Concurrency.MainActor(unsafe) public init(frame: CoreGraphics.CGRect, config: ZelleSDK.BridgeConfig, viewController: UIKit.UIViewController)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func removeFromSuperview()
+  @objc deinit
+  @_Concurrency.MainActor(unsafe) @objc public func webView(_ webView: WebKit.WKWebView, decidePolicyFor navigationResponse: WebKit.WKNavigationResponse, decisionHandler: @escaping (WebKit.WKNavigationResponsePolicy) -> Swift.Void)
+  @_Concurrency.MainActor(unsafe) @objc public func webView(_ webView: WebKit.WKWebView, didFinish navigation: WebKit.WKNavigation!)
+  @_Concurrency.MainActor(unsafe) @objc public func webView(_ webView: WebKit.WKWebView, didStartProvisionalNavigation navigation: WebKit.WKNavigation!)
+  @_Concurrency.MainActor(unsafe) @objc public func webView(_ webView: WebKit.WKWebView, didFail navigation: WebKit.WKNavigation!, withError error: Swift.Error)
+  @_Concurrency.MainActor(unsafe) public func load()
+  @_Concurrency.MainActor(unsafe) public func evaluate(JS: Swift.String, completionHandler: ((Any?, Swift.Error?) -> Swift.Void)? = nil)
+  @_Concurrency.MainActor(unsafe) public func saveCachedContacts(cachedContacts: Swift.String)
+  @_Concurrency.MainActor(unsafe) @objc public func webView(_ webView: WebKit.WKWebView, runJavaScriptAlertPanelWithMessage message: Swift.String, initiatedByFrame frame: WebKit.WKFrameInfo, completionHandler: @escaping () -> Swift.Void)
+  @_Concurrency.MainActor(unsafe) @objc public func webView(_ webView: WebKit.WKWebView, runJavaScriptConfirmPanelWithMessage message: Swift.String, initiatedByFrame frame: WebKit.WKFrameInfo, completionHandler: @escaping (Swift.Bool) -> Swift.Void)
+  @_Concurrency.MainActor(unsafe) @objc public func webView(_ webView: WebKit.WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: Swift.String, defaultText: Swift.String?, initiatedByFrame frame: WebKit.WKFrameInfo, completionHandler: @escaping (Swift.String?) -> Swift.Void)
+}
+public struct PermissionObject : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers @objc @_Concurrency.MainActor(unsafe) public class BridgePopup : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) public var bridgeView: ZelleSDK.BridgeView {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public init(anchor: UIKit.UIView, config: ZelleSDK.BridgeConfig, viewController: UIKit.UIViewController)
+  @_Concurrency.MainActor(unsafe) public func load()
+  @objc deinit
+}
+@objc public protocol BridgeConfig {
+  @objc var url: Swift.String { get set }
+  @objc var preCacheContacts: Swift.Bool { get set }
+}
+@objc public protocol GenericTagDelegate {
+  @objc func sessionTag(name: Swift.String)
+  @objc func getValue(name: Swift.String)
+  @objc func onFalureLogs(data: Swift.String)
+}
+@_hasMissingDesignatedInitializers public class RawConfig : ZelleSDK.BridgeConfig {
+  @objc public var url: Swift.String
+  @objc public var preCacheContacts: Swift.Bool
+  @objc deinit
+}
+public struct MsgObject : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct DeviceInfoObject : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct EventResultObject : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+@objc public class Zelle : ObjectiveC.NSObject, ZelleSDK.BridgeConfig {
+  @objc public var url: Swift.String
+  @objc public var preCacheContacts: Swift.Bool
+  @objc public init(applicationName: Swift.String? = nil, baseUrl: Swift.String, institutionId: Swift.String, product: Swift.String, ssoKey: Swift.String, title: Swift.String, bgColor: Swift.String? = nil, loaderData: [Swift.String : Swift.String]? = nil, parameters: [Swift.String : Swift.String])
+  @objc deinit
+}
